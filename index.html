@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person 💕</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fff5f7',
+                            100: '#ffe3e8',
+                            200: '#ffccd5',
+                            300: '#ffa3b4',
+                            400: '#ff6b85',
+                            500: '#f43f63',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        script: ['"Sacramento"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+        .floating-heart {
+            animation: float 4s ease-in-out infinite;
+        }
+        .pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .moment-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .moment-visual {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            height: 12rem;
+            background: #fff1f2;
+            border: 1px solid rgba(251, 113, 133, 0.15);
+        }
+        .moment-placeholder,
+        .moment-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .moment-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #fb7185;
+            transition: opacity 0.25s ease;
+            z-index: 1;
+        }
+        .moment-image {
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.08);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+        }
+        .moment-card:hover .moment-image.has-image,
+        .moment-card.is-visible .moment-image.has-image {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .moment-card.has-image .moment-placeholder,
+        .moment-card.is-visible .moment-placeholder {
+            opacity: 0;
+        }
+        .upload-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid #fecdd3;
+            background: #fff;
+            color: #e11d48;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .upload-button:hover {
+            background: #fff1f2;
+            transform: translateY(-1px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff5f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ffccd5;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffa3b4;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blush-50 via-pink-50 to-rose-100 min-h-screen text-slate-700 font-sans selection:bg-blush-200 selection:text-blush-500 overflow-x-hidden">
+
+    <!-- Floating Background Decor Elements -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+        <div class="absolute top-12 left-10 text-blush-300 text-3xl floating-heart" style="animation-delay: 0s;">💖</div>
+        <div class="absolute top-1/4 right-16 text-rose-300 text-2xl floating-heart" style="animation-delay: 1.5s;">✨</div>
+        <div class="absolute bottom-20 left-20 text-blush-400 text-3xl floating-heart" style="animation-delay: 2s;">💌</div>
+        <div class="absolute bottom-1/3 right-1/4 text-rose-400 text-2xl floating-heart" style="animation-delay: 0.8s;">🌸</div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="relative z-10 max-w-3xl mx-auto px-4 py-8 md:py-12 flex flex-col gap-10">
+
+        <!-- HEADER SECTION -->
+        <header class="text-center flex flex-col items-center gap-3">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-md shadow-rose-100 text-rose-500 text-3xl mb-1 pulse-slow">
+                💖
+            </div>
+            <h1 class="font-script text-6xl md:text-7xl text-rose-500 tracking-wide drop-shadow-sm">
+                Just For You
+            </h1>
+            <p class="text-slate-500 text-sm md:text-base font-medium max-w-md">
+                A little corner of the internet dedicated entirely to my favorite person in the whole world.
+            </p>
+        </header>
+
+        <!-- LOVE LETTER CARD -->
+        <section class="bg-white/85 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl shadow-rose-100/50 border border-white relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-rose-100">
+            <div class="absolute -right-10 -bottom-10 text-9xl text-blush-50 select-none pointer-events-none font-script">Love</div>
+            
+            <div class="flex items-center gap-2 text-rose-500 font-semibold mb-4 text-sm tracking-wider uppercase">
+                <span>💌</span> A Little Note
+            </div>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+                <p class="font-script text-3xl text-rose-500 mb-2">My dearest,</p>
+                <p>
+                    I wanted to build something special just for you—somewhere you can always open up whenever you need a reminder of how deeply you are loved and cherished.
+                </p>
+                <p>
+                    Every moment we share, every laugh, and every quiet conversation means the absolute world to me. You bring so much warmth, brightness, and joy into my life effortlessly.<<br><br> I love you more than words can express, and I hope this little corner of the internet can serve as a small reflection of that love.
+                </p>
+                <p class="pt-2 font-medium text-slate-700"
+                    Thank you for being you, and for being mine. 🌹
+                </p>
+            </div>
+        </section>
+
+        <!-- REASONS WHY I LOVE YOU -->
+        <section class="space-y-4">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
+                    <span>✨</span> Why I Love You <span>✨</span>
+                </h2>
+                <p class="text-sm text-slate-500">Click a card to interact</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div onclick="toggleReason(this)" class="group cursor-pointer bg-white/85 hover:bg-white p-6 rounded-2xl shadow-md shadow-rose-100/40 border border-white transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-wider">Reason #01</span>
+                        <span class="text-rose-400 text-sm group-hover:scale-125 transition-transform">💌</span>
+                    </div>
+                    <p class="text-slate-700 font-medium text-base">Your infectious smile that instantly brightens up my entire day no matter what.</p>
+                </div>
+
+                <div onclick="toggleReason(this)" class="group cursor-pointer bg-white/85 hover:bg-white p-6 rounded-2xl shadow-md shadow-rose-100/40 border border-white transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-wider">Reason #02</span>
+                        <span class="text-rose-400 text-sm group-hover:scale-125 transition-transform">✨</span>
+                    </div>
+                    <p class="text-slate-700 font-medium text-base">The way you listen with your whole heart and make me feel completely understood.</p>
+                </div>
+
+                <div onclick="toggleReason(this)" class="group cursor-pointer bg-white/85 hover:bg-white p-6 rounded-2xl shadow-md shadow-rose-100/40 border border-white transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-wider">Reason #03</span>
+                        <span class="text-rose-400 text-sm group-hover:scale-125 transition-transform">🌸</span>
+                    </div>
+                    <p class="text-slate-700 font-medium text-base">How effortlessly funny, sweet, and wonderfully goofy you can be around me.</p>
+                </div>
+
+                <div onclick="toggleReason(this)" class="group cursor-pointer bg-white/85 hover:bg-white p-6 rounded-2xl shadow-md shadow-rose-100/40 border border-white transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-rose-400 uppercase tracking-wider">Reason #04</span>
+                        <span class="text-rose-400 text-sm group-hover:scale-125 transition-transform">💖</span>
+                    </div>
+                    <p class="text-slate-700 font-medium text-base">Simply being the most amazing person I have ever had the privilege of knowing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO MEMORIES GALLERY -->
+        <section class="space-y-4">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
+                    <span>📸</span> Our Favorite Moments <span>📸</span>
+                </h2>
+                <p class="text-sm text-slate-500">Some of my favorite memories with you</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="moment-card bg-white p-3 rounded-2xl shadow-md shadow-rose-100/40 border border-white transform transition duration-300 hover:rotate-1">
+                    <div class="moment-visual">
+                        <div class="moment-placeholder">
+                            <span class="text-3xl">🌅</span>
+                            <span class="text-xs font-semibold text-rose-400">Our Adventures</span>
+                        </div>
+                        <img class="moment-image" alt="Our Adventures memory" />
+                    </div>
+                    <label class="mt-3 block cursor-pointer">
+                        <input type="file" accept="image/*" class="sr-only moment-upload" />
+                        <span class="upload-button">Upload photo</span>
+                    </label>
+                    <p class="text-xs text-center text-slate-500 mt-2 font-medium">Every journey is better with you</p>
+                </div>
+
+                <div class="moment-card bg-white p-3 rounded-2xl shadow-md shadow-rose-100/40 border border-white transform transition duration-300 hover:-rotate-1">
+                    <div class="moment-visual">
+                        <div class="moment-placeholder">
+                            <span class="text-3xl">☕</span>
+                            <span class="text-xs font-semibold text-rose-400">Quiet Dates</span>
+                        </div>
+                        <img class="moment-image" alt="Quiet dates memory" />
+                    </div>
+                    <label class="mt-3 block cursor-pointer">
+                        <input type="file" accept="image/*" class="sr-only moment-upload" />
+                        <span class="upload-button">Upload photo</span>
+                    </label>
+                    <p class="text-xs text-center text-slate-500 mt-2 font-medium">Simple moments are the best</p>
+                </div>
+
+                <div class="moment-card bg-white p-3 rounded-2xl shadow-md shadow-rose-100/40 border border-white transform transition duration-300 hover:rotate-1">
+                    <div class="moment-visual">
+                        <div class="moment-placeholder">
+                            <span class="text-3xl">🌙</span>
+                            <span class="text-xs font-semibold text-rose-400">Late Night Talks</span>
+                        </div>
+                        <img class="moment-image" alt="Late night talks memory" />
+                    </div>
+                    <label class="mt-3 block cursor-pointer">
+                        <input type="file" accept="image/*" class="sr-only moment-upload" />
+                        <span class="upload-button">Upload photo</span>
+                    </label>
+                    <p class="text-xs text-center text-slate-500 mt-2 font-medium">Talking for hours about everything</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI INTERACTIVE LOVE QUIZ -->
+        <section class="bg-white/85 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl shadow-rose-100/50 border border-white">
+            <div class="text-center mb-6">
+                <span class="text-rose-500 text-sm font-semibold uppercase tracking-wider">Quick Question</span>
+                <h3 class="text-xl font-bold text-slate-800 mt-1">How much do I love you?</h3>
+            </div>
+
+            <div id="quiz-container" class="flex flex-wrap justify-center gap-3">
+                <button onclick="answerQuiz('infinite')" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-md shadow-rose-200 transition transform active:scale-95 text-sm">
+                    Infinitely! ♾️
+                </button>
+                <button onclick="answerQuiz('more')" class="bg-white hover:bg-blush-50 text-rose-500 border border-rose-200 px-6 py-2.5 rounded-full font-semibold shadow-sm transition transform active:scale-95 text-sm">
+                    More than words can say 🌸
+                </button>
+                <button onclick="answerQuiz('all')" class="bg-blush-100 hover:bg-blush-200 text-rose-600 px-6 py-2.5 rounded-full font-semibold transition transform active:scale-95 text-sm">
+                    All of the above 💕
+                </button>
+            </div>
+
+            <div id="quiz-result" class="hidden text-center mt-6 p-4 bg-blush-50 rounded-2xl border border-blush-200">
+                <p class="text-rose-600 font-semibold text-base" id="quiz-result-text"></p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center pb-8 pt-4">
+            <p class="text-slate-400 text-sm flex items-center justify-center gap-1.5 font-medium">
+                Made with <span class="text-rose-500 animate-pulse">❤️</span> just for you
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        function toggleReason(element) {
+            element.classList.add('scale-95', 'bg-blush-50');
+            setTimeout(() => {
+                element.classList.remove('scale-95', 'bg-blush-50');
+            }, 200);
+        }
+
+        function answerQuiz(type) {
+            const resultDiv = document.getElementById('quiz-result');
+            const resultText = document.getElementById('quiz-result-text');
+            
+            let message = "";
+            if (type === 'infinite') {
+                message = "Correct! My love for you has no bounds or limits. ♾️💖";
+            } else if (type === 'more') {
+                message = "Spot on! Words could never truly express how much you mean to me. ✨";
+            } else {
+                message = "You know me too well! Absolutely all of the above and so much more. 🥰";
+            }
+
+            resultText.innerText = message;
+            resultDiv.classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.moment-card').forEach((card) => {
+            const input = card.querySelector('.moment-upload');
+            const image = card.querySelector('.moment-image');
+            const button = card.querySelector('.upload-button');
+
+            input.addEventListener('change', (event) => {
+                const file = event.target.files && event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (loadEvent) => {
+                    image.src = loadEvent.target.result;
+                    image.classList.add('has-image');
+                    card.classList.add('has-image');
+                    button.textContent = 'Change photo';
+                    card.classList.add('is-visible');
+                };
+                reader.readAsDataURL(file);
+            });
+
+            card.addEventListener('click', (event) => {
+                if (event.target.closest('.moment-upload') || event.target.closest('.upload-button')) {
+                    return;
+                }
+
+                if (card.classList.contains('has-image')) {
+                    card.classList.toggle('is-visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
